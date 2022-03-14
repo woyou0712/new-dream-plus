@@ -8,7 +8,6 @@
 - 从Git获取项目 https://github.com/woyou0712/new-dream-plus
 - 放入`src`目录下
 
-```
 ## 全局注册
 - 在main.js中引入
 
