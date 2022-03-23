@@ -16,6 +16,7 @@ const defaultConfig = {
   miniBtn: true,
   maxBtn: true,
   resize: true,
+  icon: null,
 }
 
 class Win {
@@ -56,6 +57,7 @@ class Win {
       this.parentId = null
     }
     this.status = config.status || Win.config.status;  // initial:默认显示 ,max:最大化, mini:最小化, close:关闭/隐藏 ---
+    this.icon = config.icon || Win.config.icon; // 窗口图标
     this.title = config.title || Win.config.title; // 窗口标题
     this.width = config.width || Win.config.width; // 窗口宽
     this.height = config.height || Win.config.height; // 窗口高
@@ -97,7 +99,7 @@ class Win {
     this.els.setSize(this.width, this.height); // 设置窗口大小
     let parentNode = this.parentId ? Win.allMap[this.parentId] : null;
     this.els.initPosition(parseFloat(this.width), parseFloat(this.height), parentNode); // 初始化显示区域
-    this.els.setAttribute(this.title, this.miniBtn, this.maxBtn, this.resize); // 设置属性
+    this.els.setAttribute(this.icon, this.title, this.miniBtn, this.maxBtn, this.resize); // 设置属性
     this.__setClick() // 添加点击事件
     this.__setDrag() // 添加拖拽方法
   }

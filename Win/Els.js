@@ -17,6 +17,7 @@ class Els {
   constructor() {
     this.box = Els.createElement(["new-windows-box", "initial"]); // 外层盒子
     this.header = Els.createElement("new-windows-header"); // 头部
+    this.icon = Els.createElement("new-windows-icon"); // 图标
     this.title = Els.createElement("new-windows-title"); // 标题
     this.btnbox = Els.createElement("new-windows-btnbox"); // 右侧按钮盒子
     this.minimize = Els.createElement(["new-windows-btn", "new-windows-minimize"]); // 最小化 按钮
@@ -51,9 +52,18 @@ class Els {
     this.btnbox.appendChild(this.close) // 关闭按钮
   }
   // 设置属性
-  setAttribute(title, miniBtn, maxBtn, resize) {
+  setAttribute(icon, title, miniBtn, maxBtn, resize) {
     this.box.style['resize'] = resize ? 'both' : 'initial';
-    this.title.innerText = title; // 设置标题
+    // 设置标题
+    if (icon) {
+      this.icon.innerHTML = icon;
+      this.title.appendChild(this.icon);
+      let text = Els.createElement("new-windows-title-text", "span");
+      text.innerText = title;
+      this.title.appendChild(text);
+    } else {
+      this.title.innerText = title;
+    }
     if (!miniBtn) { this.minimize.style["display"] = "none" }
     if (!maxBtn) { this.maximize.style["display"] = "none" }
   }
