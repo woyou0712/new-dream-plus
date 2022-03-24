@@ -29,7 +29,10 @@ class Win {
     // 监听方法
     this.__methods = {}
     // 加载初始化配置项
-    this.__initConfig(config)
+    let success = this.__initConfig(config)
+    if (!success) {
+      return false
+    }
     // 初始化元素
     this.__initEls()
     // 挂载内容
@@ -45,9 +48,12 @@ class Win {
     this.id = config.id || `new-windows-box-${Math.random()}-${Date.now()}`; // 窗口ID
     // 如果窗口ID重复,则直接置顶显示
     if (Win.allMap[this.id]) {
-      Win.allMap[this.id].__status = 'initial'
-      this.__setZindex()
-      return
+      // 如果是最小化则恢复
+      if (Win.allMap[this.id].__status === 'mini') {
+        Win.allMap[this.id].__status = 'initial'
+      }
+      Win.allMap[this.id].__setZindex()
+      return false
     }
     Win.allMap[this.id] = this
     this.parentId = config.parentId; // 父窗口ID
@@ -65,6 +71,7 @@ class Win {
     this.resize = config.resize || config.resize === false ? config.resize : Win.config.resize; // 窗口是否可以缩放
     this.maxBtn = config.maxBtn || config.maxBtn === false ? config.maxBtn : Win.config.maxBtn; // 显示最大化按钮
     this.children = {}
+    return true
   }
 
   set __status(v) {
@@ -110,9 +117,11 @@ class Win {
       this.component = createApp(config.component, config.props || {}); // 解析渲染VUE组件
       this.component.mount(this.els.content)
     } else {
+      let url = config.url || Win.config.url;
+      this.url = url;
       let html = Els.createElement("new-windows-html", "iframe")
       html.sandbox = "allow-forms allow-scripts allow-same-origin allow-popups"; //防止域名重定向,导致整个页面跳转
-      html.setAttribute("src", config.url || Win.config.url)
+      html.setAttribute("src", url)
       this.els.content.appendChild(html)
     }
   }
