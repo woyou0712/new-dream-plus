@@ -100,6 +100,16 @@ class Win {
   get __status() {
     return this.status;
   }
+
+  set __zIndex(v) {
+    this.els.box.style["z-index"] = v
+    this.zIndex = v
+  }
+
+  get __zIndex() {
+    return this.zIndex;
+  }
+
   // 创建基本元素
   __initEls() {
     this.els = new Els();
@@ -128,7 +138,6 @@ class Win {
 
   // 渲染到页面
   __showWin() {
-    // 在浏览器下一次更新帧时渲染
     requestAnimationFrame(() => {
       if (this.parentId && Win.allMap[this.parentId] && Win.allMap[this.parentId].els) {
         Win.allMap[this.parentId].els.content.appendChild(this.els.box)
@@ -141,11 +150,11 @@ class Win {
 
   // 设置层级
   __setZindex() {
-    // 在浏览器下一次更新帧时渲染
     requestAnimationFrame(() => {
-      Win.zIndex += 1;
-      this.els.box.style["z-index"] = Win.zIndex
-      this.zIndex = Win.zIndex
+      if (!this.__zIndex || this.__zIndex < Win.zIndex) {
+        Win.zIndex += 1;
+        this.__zIndex = Win.zIndex
+      }
       this.__ontop()
     })
   }
