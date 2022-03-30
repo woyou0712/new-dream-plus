@@ -7,31 +7,26 @@ class Message {
     if (option) {
       this.msg = option.msg || option;
       this.type = option.type;
-      this.time = option.time || 3000;
-      this.__createElement();
+      this.time = option.time;
+      Message.__createElement(this.msg, this.type, this.time);
     }
-    this.time = 3000;
   }
-  __createElement() {
-    let message = Els.createElement("new-message-box");
-    if (this.type) {
-      message.classList.add(this.type)
+  static __createElement(msg, type, time = 3000) {
+    let message = Els.createElement("new-window-message");
+    if (type) {
+      message.classList.add(type)
     }
-    message.innerText = this.msg;
+    message.innerText = msg;
     document.body.appendChild(message);
     setTimeout(function () {
       document.body.removeChild(message);
-    }, this.time);
+    }, time);
   }
-  error(message) {
-    this.type = "error";
-    this.msg = message;
-    this.__createElement();
+  static error(message) {
+    Message.__createElement(message, "error");
   }
-  success(message) {
-    this.type = "success";
-    this.msg = message;
-    this.__createElement();
+  static success(message) {
+    Message.__createElement(message, "success");
   }
 }
 
