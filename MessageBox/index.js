@@ -59,7 +59,7 @@ class MessageBox {
     let btn1 = Els.createElement("btn");
     btn1.innerText = this.cancelName;
     btn1.onclick = this.__cancel
-    let btn2 = Els.createElement("btn");
+    let btn2 = Els.createElement("btn primary");
     btn2.innerText = this.submitName;
     btn2.onclick = this.__submit
     btns.appendChild(btn1)

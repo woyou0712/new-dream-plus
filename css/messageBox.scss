@@ -51,10 +51,27 @@
       border-radius: 4px;
       +.btn{
         margin-left: 10px;
-        color: #fff;
-        background-color: #409eff;
-        border-color: #409eff;
       }
+    }
+    .btn:focus, .btn:hover {
+      color: #409eff;
+      border-color: #c6e2ff;
+      background-color: #ecf5ff;
+    }
+    .btn.primary{
+      color: #fff;
+      background-color: #409eff;
+      border-color: #409eff;
+    }
+    .btn:focus, .btn:hover {
+      color: #409eff;
+      border-color: #c6e2ff;
+      background-color: #ecf5ff;
+    }
+    .btn.primary:focus, .btn.primary:hover {
+      background: #66b1ff;
+      border-color: #66b1ff;
+      color: #fff;
     }
   }
 }

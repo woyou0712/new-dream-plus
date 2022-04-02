@@ -54,9 +54,26 @@
 }
 .new-window-message-box .btns .btn + .btn {
   margin-left: 10px;
+}
+.new-window-message-box .btns .btn:focus, .new-window-message-box .btns .btn:hover {
+  color: #409eff;
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
+}
+.new-window-message-box .btns .btn.primary {
   color: #fff;
   background-color: #409eff;
   border-color: #409eff;
+}
+.new-window-message-box .btns .btn:focus, .new-window-message-box .btns .btn:hover {
+  color: #409eff;
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
+}
+.new-window-message-box .btns .btn.primary:focus, .new-window-message-box .btns .btn.primary:hover {
+  background: #66b1ff;
+  border-color: #66b1ff;
+  color: #fff;
 }
 
 /*# sourceMappingURL=messageBox.css.map */
