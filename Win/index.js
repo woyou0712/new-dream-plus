@@ -23,7 +23,7 @@ class Win {
   static allMap = {}; // 所有窗口map表
   static shade = createShade(); // 拖拽遮罩层,防止元素丢失/卡顿
   static config = defaultConfig; // 配置项缺省值
-  static zIndex = 0; // 层级
+  static zIndex = 2000; // 层级
 
   constructor(config = Win.config) {
     // 监听方法
