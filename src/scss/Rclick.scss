@@ -1,0 +1,54 @@
+.windows-right-menus {
+  background-color: #f8f8f8;
+  padding: 3px 0;
+  position: fixed;
+  z-index: 100001;
+  box-shadow: 0 2px 5px 0 #aaa;
+  border: 1px solid #bbb;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .window-right-menus-item {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #666666;
+    cursor: pointer;
+    padding: 0 5px;
+
+    .window-right-menus-item-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+      padding: 2px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg,
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .window-right-menus-item-name {
+      width: calc(100% - 25px);
+      height: 30px;
+      line-height: 30px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      text-align: left;
+    }
+  }
+
+  .window-right-menus-item:hover {
+    background-color: #ffffff;
+  }
+}

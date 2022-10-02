@@ -1,0 +1,194 @@
+body {
+  position: relative;
+  padding: 0;
+  margin: 0;
+
+  .new-windows-box {
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+    box-shadow: 0 3px 6px 0 #aaa;
+    border: 1px solid #bbb;
+    overflow: hidden;
+    position: fixed;
+    width: 50%;
+    height: 50%;
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .new-windows-header {
+      width: 100%;
+      height: 32px;
+      background-color: #F2F6FC;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #333;
+
+      .new-windows-title {
+        display: flex;
+        align-items: flex-start;
+        max-width: 300px;
+        cursor: default;
+        height: 100%;
+        font-size: 14px;
+        padding: 5px 0 0 10px;
+
+        .new-windows-icon {
+          width: 18px;
+          height: 18px;
+          margin-right: 5px;
+          overflow: hidden;
+
+          svg,
+          img {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+            overflow: hidden;
+          }
+        }
+
+        .new-windows-name {
+          height: 18px;
+          line-height: 18px;
+          max-width: 140px;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+      }
+
+      .new-windows-move {
+        flex: 1;
+        height: 100%;
+        cursor: move;
+      }
+
+      .new-windows-btnbox {
+        display: flex;
+        align-items: flex-start;
+        height: 100%;
+
+        .new-windows-btn {
+          width: 36px;
+          padding: 5px;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+
+        .new-windows-btn:not(.new-windows-close):hover {
+          background-color: rgba($color: #ddd, $alpha: .8);
+        }
+
+        .new-windows-close:hover {
+          background-color: rgba($color: #e00, $alpha: .8);
+          color: #fff;
+        }
+      }
+    }
+
+    .new-windows-content {
+      position: relative;
+      height: calc(100% - 32px);
+      overflow: hidden;
+      background-color: #ffffff;
+
+      .new-windows-html {
+        height: 100%;
+        width: 100%;
+      }
+
+      .new-windows-mini-list-box {
+        position: absolute;
+      }
+    }
+  }
+
+  .new-windows-box.max {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: 1px solid #aaa;
+  }
+
+  .new-windows-box.mini {
+    display: none;
+  }
+
+  #new-windows-shade {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 100000;
+    cursor: move;
+  }
+
+  .new-windows-mini-list-box {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+
+    .new-windows-box.mini {
+      width: 120px !important;
+      height: 32px !important;
+      resize: none !important;
+      position: initial !important;
+      box-shadow: none;
+      display: block;
+
+      .new-windows-header {
+        .new-windows-title {
+          width: calc(100% - 36px);
+          padding: 0 0 0 5px;
+          height: 100% !important;
+          align-items: center;
+          overflow: hidden;
+
+          .new-windows-name {
+            width: calc(100% - 23px);
+          }
+        }
+
+        .new-windows-move {
+          display: none;
+        }
+
+        .new-windows-btnbox {
+          height: 100% !important;
+          align-items: center;
+
+          .new-windows-minimize {
+            height: 100%;
+          }
+
+          .new-windows-maximize {
+            display: none !important;
+          }
+
+          .new-windows-close {
+            display: none !important;
+          }
+
+
+        }
+      }
+
+      .new-windows-content {
+        display: none;
+      }
+    }
+
+  }
+}

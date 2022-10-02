@@ -1,0 +1,10 @@
+export { Win } from "./Win/index";
+export { Menu } from "./Rclick/index";
+export { Message } from "./Message/index";
+export { MessageBox } from "./MessageBox/index";
+import { $Win } from "./Win/index";
+import { $Menu, installMenu } from "./Rclick/index";
+import { $MessageBox } from "./MessageBox/index";
+import { $Message } from "./Message/index";
+export default { Win: $Win, Menu: $Menu, install: installMenu, MessageBox: $MessageBox, Message: $Message };
+window.$newDream = { Win: $Win, Menu: $Menu, MessageBox: $MessageBox, Message: $Message };

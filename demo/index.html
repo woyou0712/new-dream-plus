@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../dist/main.min.js"></script>
+  <link rel="stylesheet" href="../dist/index.css">
+</head>
+
+<body style="padding: 20px;">
+  <button id="show-win-01">弹窗01</button>
+  <button id="show-win-02">弹窗01子窗口</button>
+  <button id="show-info-msg">info轻提示</button>
+  <button id="show-err-msg">error轻提示</button>
+  <button id="show-success-msg">success轻提示</button>
+  <button id="show-submit-msg">消息确认框</button>
+  <div style="
+    width: 600px;
+    height: 600px;
+    border: 1px solid #aaa;
+    margin: 10px auto;
+    text-align: center;
+  "
+  id="r-click" 
+  >
+    尝试在此区域内设置点击鼠标右键
+  </div>
+  <script>
+    window.onload = function () {
+      const { Win, Message, MessageBox, Menu } = window.$newDream;
+      document.getElementById("show-win-01").addEventListener("click", function () {
+        new Win({ id: "win-01",miniBtn:true })
+      })
+      document.getElementById("show-win-02").addEventListener("click", function () {
+        new Win({ parentId: "win-01", width: "500px", height: "400px" })
+      })
+      document.getElementById("show-info-msg").addEventListener("click", function () {
+        new Message("info text")
+      })
+      document.getElementById("show-err-msg").addEventListener("click", function () {
+        new Message({ msg: "error text", type: "error" })
+      })
+      document.getElementById("show-success-msg").addEventListener("click", function () {
+        Message.success("success text")
+      })
+      document.getElementById("show-submit-msg").addEventListener("click", function () {
+        new MessageBox({ title: "危险提示", msg: "您正在执行危险操作，是否继续" }).submit(() => {
+          console.log("继续")
+        }).cancel(() => {
+          console.log("取消")
+        })
+      })
+      
+      let r = document.getElementById("r-click")
+      new Menu(r)
+    }
+  </script>
+
+</body>
+
+</html>
