@@ -260,7 +260,7 @@ var Win = (function () {
         for (var i = 0; i < 8; i++) {
             rdStr += random[parseInt(String(Math.random() * random.length))];
         }
-        return "new-dream-".concat(random, "-").concat(Date.now());
+        return "new-dream-".concat(rdStr, "-").concat(Date.now());
     };
     Win.WinIdMap = {};
     Win.Shade = createElement({ id: "new-windows-shade" });

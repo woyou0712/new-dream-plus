@@ -51,7 +51,7 @@ export class Win {
     this.addButtonEvent(); // 为按钮添加事件
     this.__init__show(); // 将窗口挂载到页面
     this.__zIndex = Win.zIndex;
-    
+
     // 如果需要加载最小化列表，并且根列表没有加载
     if (Win.showMiniList && !Win.baseMiniEl) {
       // 加载根列表
@@ -328,7 +328,7 @@ export class Win {
     for (let i = 0; i < 8; i++) {
       rdStr += random[parseInt(String(Math.random() * random.length))]
     }
-    return `new-dream-${random}-${Date.now()}`
+    return `new-dream-${rdStr}-${Date.now()}`
   }
 }
 function createBaseMiniEl() {

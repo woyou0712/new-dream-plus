@@ -1,6 +1,6 @@
 {
   "name": "new-dream-plus",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "The pop-up UI component of Vue3",
   "main": "src/main",
   "scripts": {
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@babel/types": "^7.19.3",
     "vue": "^3.2.40",
+    "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   }
 }
