@@ -6,6 +6,13 @@ type Methods = {
   close?: Callback
   success?: Callback
 }
+
+interface MyMouseEvent extends MouseEvent {
+  layerX: number
+  layerY: number
+}
+
+
 export class Screen {
   private box: HTMLElement
   private bgImg: HTMLElement
@@ -64,8 +71,8 @@ export class Screen {
   private __init_event() {
     let endX = 0, endY = 0;
     // 监听鼠标按下
-    this.shade.addEventListener("mousedown", (e) => {
-      const startX = e.x, startY = e.y;
+    this.shade.addEventListener("mousedown", (e: MyMouseEvent) => {
+      const startX = e.layerX, startY = e.layerY;
       this.top.style["height"] = `${startY}px`;
       this.left.style["width"] = `${startX}px`;
       // 重置属性
@@ -73,9 +80,9 @@ export class Screen {
       endX = 0;
       endY = 0;
       // 监听鼠标移动
-      this.shade.onmousemove = (e) => {
-        endX = e.x;
-        endY = e.y;
+      this.shade.onmousemove = (e: MyMouseEvent) => {
+        endX = e.layerX;
+        endY = e.layerY;
         if (endX < startX || endY < startY) {
           return;
         }

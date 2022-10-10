@@ -205,6 +205,7 @@ submitName | 否 | 确认按钮文字 | "确定"
   </div>
 </template>
 <script lang="ts" setup>
+  import { Screen } from "new-dream-plus"
   const s = new Screen();
   const imgdata = ref("");
   function slictWin() {
