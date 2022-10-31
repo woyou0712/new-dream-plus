@@ -29,5 +29,8 @@ export default function (config: Config, defaultConfig: HtmlConfig) {
     if (!config.component && !config.url) {
         config.url = defaultConfig.url
     }
+    if (!config.sandbox) {
+        config.sandbox = defaultConfig.sandbox
+    }
     return config
 }

@@ -28,5 +28,8 @@ export default function (config, defaultConfig) {
     if (!config.component && !config.url) {
         config.url = defaultConfig.url;
     }
+    if (!config.sandbox) {
+        config.sandbox = defaultConfig.sandbox;
+    }
     return config;
 }

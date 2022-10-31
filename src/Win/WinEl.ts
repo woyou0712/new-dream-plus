@@ -140,7 +140,10 @@ export class WinEl {
        * allow-top-navigation：允许内嵌网页的最高级内容的打开
        * allow-top-navigation-by-user-activation：允许内嵌网页的最高级内容在使用者许可的情况下打开
        *  */
-      iframe.setAttribute("sandbox", "allow-downloads allow-forms allow-modals allow-orientation-lock allow-popups allow-scripts allow-same-origin allow-popups allow-top-navigation-by-user-activation")
+      if (config.sandbox && config.sandbox.length) {
+        const sandbox = config.sandbox.join(" ")
+        iframe.setAttribute("sandbox", sandbox)
+      }
       iframe.setAttribute("src", config.url)
       this.content.appendChild(iframe)
     }

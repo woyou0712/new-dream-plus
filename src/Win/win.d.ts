@@ -1,5 +1,6 @@
 import { Component, ComputedOptions, MethodOptions } from "vue"
 import { Win } from "./index"
+type Sandbox = "allow-downloads-without-user-activation" | "allow-downloads" | "allow-forms" | "allow-modals" | "allow-orientation-lock" | "allow-pointer-lock" | "allow-popups" | "allow-popups-to-escape-sandbox" | "allow-presentation" | "allow-same-origin" | "allow-scripts" | "allow-storage-access-by-user-activation" | "allow-top-navigation" | "allow-top-navigation-by-user-activation"
 
 interface BaseConfig {
   parentId?: string
@@ -12,6 +13,7 @@ interface BaseConfig {
   resize?: boolean,
   icon?: string | HTMLImageElement,
   props?: { [key: string]: any }
+  sandbox?: Sandbox[]
 }
 export interface HtmlConfig extends BaseConfig {
   url: string

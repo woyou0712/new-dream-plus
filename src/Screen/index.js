@@ -40,14 +40,16 @@ var Screen = (function () {
     Screen.prototype.__init_event = function () {
         var _this = this;
         var endX = 0, endY = 0;
-        this.shade.addEventListener("mousedown", function (e) {
+        this.shade.addEventListener("mousedown", function (event) {
+            var e = event;
             var startX = e.layerX, startY = e.layerY;
             _this.top.style["height"] = "".concat(startY, "px");
             _this.left.style["width"] = "".concat(startX, "px");
             _this.reset();
             endX = 0;
             endY = 0;
-            _this.shade.onmousemove = function (e) {
+            _this.shade.onmousemove = function (event) {
+                var e = event;
                 endX = e.layerX;
                 endY = e.layerY;
                 if (endX < startX || endY < startY) {

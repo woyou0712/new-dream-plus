@@ -92,7 +92,10 @@ var WinEl = (function () {
         }
         else if (config.url) {
             var iframe = createElement({ class: "new-windows-html", name: "iframe" });
-            iframe.setAttribute("sandbox", "allow-downloads allow-forms allow-modals allow-orientation-lock allow-popups allow-scripts allow-same-origin allow-popups allow-top-navigation-by-user-activation");
+            if (config.sandbox && config.sandbox.length) {
+                var sandbox = config.sandbox.join(" ");
+                iframe.setAttribute("sandbox", sandbox);
+            }
             iframe.setAttribute("src", config.url);
             this.content.appendChild(iframe);
         }

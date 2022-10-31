@@ -14,7 +14,8 @@ export const defaultConfig: HtmlConfig = {
   maxBtn: false,
   resize: false,
   icon: chromeSvg,
-  url: "http://www.bauble.vip"
+  url: "http://www.bauble.vip",
+  sandbox: []
 }
 
 

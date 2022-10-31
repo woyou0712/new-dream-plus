@@ -71,7 +71,8 @@ export class Screen {
   private __init_event() {
     let endX = 0, endY = 0;
     // 监听鼠标按下
-    this.shade.addEventListener("mousedown", (e: MyMouseEvent) => {
+    this.shade.addEventListener("mousedown", (event: any) => {
+      const e: MyMouseEvent = event
       const startX = e.layerX, startY = e.layerY;
       this.top.style["height"] = `${startY}px`;
       this.left.style["width"] = `${startX}px`;
@@ -80,7 +81,8 @@ export class Screen {
       endX = 0;
       endY = 0;
       // 监听鼠标移动
-      this.shade.onmousemove = (e: MyMouseEvent) => {
+      this.shade.onmousemove = (event: any) => {
+        const e: MyMouseEvent = event
         endX = e.layerX;
         endY = e.layerY;
         if (endX < startX || endY < startY) {
