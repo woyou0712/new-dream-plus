@@ -2,6 +2,8 @@ import createElement from "../utils/createElement"
 import { MsgBoxOption, MsgBoxMethod } from "./msgBox.d"
 
 export class MessageBox {
+  static defaultContentBox = document.body;
+
   private title = "提示";
   private msg = "确认消息";
   private cancelName = "取消";
@@ -29,7 +31,7 @@ export class MessageBox {
     }
     this.el = this.__create__element();
     // 渲染到页面
-    document.body.appendChild(this.el);
+    MessageBox.defaultContentBox.appendChild(this.el);
   }
   private __create__element() {
     const box = createElement("new-window-message-box");

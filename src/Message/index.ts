@@ -2,6 +2,8 @@ import createElement from "../utils/createElement";
 import { MsgType, MsgOption } from "./msg.d"
 
 export class Message {
+  static defaultContentBox = document.body;
+
   private msg = "轻提示";
   private type: MsgType = "info";
   private time = 3000;
@@ -23,7 +25,7 @@ export class Message {
     const msgBox = createElement("new-window-message");
     msgBox.classList.add(this.type);
     msgBox.innerText = this.msg;
-    document.body.appendChild(msgBox);
+    Message.defaultContentBox.appendChild(msgBox);
     setTimeout(function () {
       const p = msgBox.parentNode;
       if (p) {

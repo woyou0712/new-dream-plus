@@ -1,7 +1,6 @@
 import createElement from "../utils/createElement";
 import { closeSvg, maxSvg, unmaxSvg, miniSvg } from "../svg/button"
 import { Config, Status } from "./win"
-import { Win } from ".";
 import { createApp } from "vue";
 
 
@@ -67,9 +66,6 @@ export class WinEl {
     if (config.height) {
       this.box.style.height = config.height;
     }
-    const { top, left } = this.__init__position(config);
-    this.box.style.top = `${top}px`;
-    this.box.style.left = `${left}px`;
     // 设置内容
     this.__set_content(config);
   }
@@ -95,24 +91,23 @@ export class WinEl {
   /**
    * 计算初始位置
    */
-  private __init__position(config: Config) {
+  public setPosition(config: Config) {
     let top = 0, left = 0;
     const reg = /[^\d]/g;
     const width = config.width?.replace(reg, ""), height = config.height?.replace(reg, "");
-    // 如果有父节点ID
-    if (config.parentId && Win.WinIdMap[config.parentId]) {
-      const parentWin = Win.WinIdMap[config.parentId];
-      if (parentWin.__Els) {
-        this.box.style['position'] = 'absolute';
-        top = (parentWin.__Els.content.offsetHeight - Number(height)) / 2;
-        left = (parentWin.__Els.content.offsetWidth - Number(width)) / 2;
-        return { top: top < 0 ? 0 : top, left: left < 0 ? 0 : left }
-      }
+    const parentElement = this.box.parentElement;
+    // 如果是根窗口
+    if (parentElement === document.body) {
+      this.box.style['position'] = 'fixed';
+      top = (window.innerHeight - Number(height)) / 2;
+      left = (window.innerWidth - Number(width)) / 2;
+    } else if (parentElement) {
+      this.box.style['position'] = 'absolute';
+      top = (parentElement.offsetHeight - Number(height)) / 2;
+      left = (parentElement.offsetWidth - Number(width)) / 2;
     }
-    this.box.style['position'] = 'fixed';
-    top = (window.innerHeight - Number(height)) / 2;
-    left = (window.innerWidth - Number(width)) / 2;
-    return { top: top < 0 ? 0 : top, left: left < 0 ? 0 : left }
+    this.box.style.top = `${top < 0 ? 0 : top}px`;
+    this.box.style.left = `${left < 0 ? 0 : left}px`;
   }
 
   private __set_content(config: Config) {

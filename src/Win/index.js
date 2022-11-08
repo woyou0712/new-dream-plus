@@ -97,8 +97,9 @@ var Win = (function () {
             parentWin.children[this.id] = this;
         }
         else {
-            document.body.appendChild(this.__Els.box);
+            Win.defaultContentBox.appendChild(this.__Els.box);
         }
+        this.__Els.setPosition(this.__config);
         Win.WinIdMap[this.id] = this;
         requestAnimationFrame(function () {
             if (_this.callbacks.mounted) {
@@ -138,9 +139,9 @@ var Win = (function () {
                 }
             }
         }
-        var parentNode = this.__Els.box.parentNode;
-        if (parentNode) {
-            parentNode.removeChild(this.__Els.box);
+        var parentElement = this.__Els.box.parentElement;
+        if (parentElement) {
+            parentElement.removeChild(this.__Els.box);
         }
         delete Win.WinIdMap[this.id];
         if (this.__config.parentId) {
@@ -157,7 +158,7 @@ var Win = (function () {
             parentMiniEl = Win.WinIdMap[this.__config.parentId].__Els.miniEl;
         }
         else {
-            parentNode = document.body;
+            parentNode = Win.defaultContentBox;
             parentMiniEl = Win.baseMiniEl;
         }
         if (this.__status === "mini") {
@@ -267,12 +268,13 @@ var Win = (function () {
     Win.Shade = createElement({ id: "new-windows-shade" });
     Win.zIndex = 0;
     Win.showMiniList = true;
+    Win.defaultContentBox = document.body;
     return Win;
 }());
 export { Win };
 function createBaseMiniEl() {
     var el = createElement("new-windows-mini-list-box");
-    document.body.appendChild(el);
+    Win.defaultContentBox.appendChild(el);
     return el;
 }
 export var $Win = Win;

@@ -22,7 +22,7 @@ var Message = (function () {
         var msgBox = createElement("new-window-message");
         msgBox.classList.add(this.type);
         msgBox.innerText = this.msg;
-        document.body.appendChild(msgBox);
+        Message.defaultContentBox.appendChild(msgBox);
         setTimeout(function () {
             var p = msgBox.parentNode;
             if (p) {
@@ -39,6 +39,7 @@ var Message = (function () {
     Message.info = function (msg) {
         new Message({ msg: msg, type: "info" });
     };
+    Message.defaultContentBox = document.body;
     return Message;
 }());
 export { Message };

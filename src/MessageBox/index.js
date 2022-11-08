@@ -24,7 +24,7 @@ var MessageBox = (function () {
             }
         }
         this.el = this.__create__element();
-        document.body.appendChild(this.el);
+        MessageBox.defaultContentBox.appendChild(this.el);
     }
     MessageBox.prototype.__create__element = function () {
         var _this = this;
@@ -71,6 +71,7 @@ var MessageBox = (function () {
         this.methods.submit = callback;
         return this;
     };
+    MessageBox.defaultContentBox = document.body;
     return MessageBox;
 }());
 export { MessageBox };

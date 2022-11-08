@@ -27,6 +27,7 @@ export class Win {
   static zIndex = 0;
   static showMiniList = true;
   static baseMiniEl: HTMLElement;
+  static defaultContentBox = document.body; // 默认内容装载盒子
   // 对象属性
   public id: string;
   public __Els: WinEl;
@@ -111,8 +112,9 @@ export class Win {
       parentWin.__Els.content.appendChild(this.__Els.box)
       parentWin.children[this.id] = this;
     } else {
-      document.body.appendChild(this.__Els.box)
+      Win.defaultContentBox.appendChild(this.__Els.box)
     }
+    this.__Els.setPosition(this.__config)
     Win.WinIdMap[this.id] = this
     // 下一帧，触发生命周期函数
     requestAnimationFrame(() => {
@@ -168,9 +170,9 @@ export class Win {
     }
 
     // 先将元素从页面移除
-    const parentNode = this.__Els.box.parentNode;
-    if (parentNode) {
-      parentNode.removeChild(this.__Els.box)
+    const parentElement = this.__Els.box.parentElement;
+    if (parentElement) {
+      parentElement.removeChild(this.__Els.box)
     }
     // 释放引用内存
     delete Win.WinIdMap[this.id]
@@ -191,7 +193,7 @@ export class Win {
       parentNode = Win.WinIdMap[this.__config.parentId].__Els.content;
       parentMiniEl = Win.WinIdMap[this.__config.parentId].__Els.miniEl;
     } else {
-      parentNode = document.body;
+      parentNode = Win.defaultContentBox;
       parentMiniEl = Win.baseMiniEl;
     }
     if (this.__status === "mini") {
@@ -334,7 +336,7 @@ export class Win {
 }
 function createBaseMiniEl() {
   const el = createElement("new-windows-mini-list-box");
-  document.body.appendChild(el);
+  Win.defaultContentBox.appendChild(el);
   return el
 }
 export const $Win = Win

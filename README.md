@@ -1,8 +1,16 @@
 # new-dream
 [Git地址](https://github.com/woyou0712/new-dream-plus)
+[讨论QQ群：666713758](https://jq.qq.com/?_wv=1027&k=EoWu8K9d)
 ```
 为VUE3量身定制的一款弹窗类UI组件,不依赖任何第三方组件库,简单轻便
 ```
+# 更新
+## 2022-11-08
+- 为`Win`类添加可配置静态属性`defaultContentBox`
+- 为`Message`类添加可配置静态属性`defaultContentBox`
+- 为`defaultContentBox`类添加可配置静态属性`defaultContentBox`
+- `defaultContentBox`：顶级弹窗盒子（默认为`document.body`）
+
 # HTML使用
 - 参考`demo`下的使用方法
 
@@ -24,8 +32,10 @@ key | 必须| 类型 | 描述 | 默认值
 showMiniList | 否 | boolean | 是否显示最小化列表 | true
 ```
 import { Win } from "new-dream-plus"
-// 不显示最小化列表
+// 是否显示最小化列表
 Win.showMiniList = false
+// 顶级弹窗盒子
+Win.defaultContentBox = document.body
 // 其他默认配置项
 import { defaultConfig } from 'new-dream/src/Win';
 import createElement from 'new-dream/src/utils/createElement';
