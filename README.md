@@ -11,6 +11,9 @@
 - 为`defaultContentBox`类添加可配置静态属性`defaultContentBox`
 - `defaultContentBox`：顶级弹窗盒子（默认为`document.body`）
 
+## 2022-11-09
+- 优化`Win`实例属性的可访问性，将`config`更新为可访问属性
+
 # HTML使用
 - 参考`demo`下的使用方法
 

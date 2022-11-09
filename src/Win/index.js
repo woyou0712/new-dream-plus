@@ -16,21 +16,22 @@ export var defaultConfig = {
 };
 var Win = (function () {
     function Win(config) {
-        this.status = "initial";
         this.config = defaultConfig;
+        this.status = "initial";
         this.children = {};
         this.upStatus = "initial";
         this.zIndex = Win.zIndex;
         this.callbacks = {};
         Win.zIndex += 1;
         this.__config = config || defaultConfig;
-        this.id = this.__config.id || Win.createId();
+        var component = this.__config.component;
+        this.id = this.__config.id ? this.__config.id : component && component.id ? component.id : Win.createId();
         if (Win.WinIdMap[this.id]) {
             var errMsg = "相同ID窗口已存在！无法继续创建";
             console.error(errMsg);
             throw new Error(errMsg);
         }
-        this.__Els = new WinEl(this.__config);
+        this.elements = new WinEl(this.__config);
         this.addMoveEvent();
         this.addButtonEvent();
         this.__init__show();
@@ -58,13 +59,13 @@ var Win = (function () {
             this.setTop();
             switch (v) {
                 case "initial":
-                    this.__Els.setInitial(this.upStatus);
+                    this.elements.setInitial(this.upStatus);
                     break;
                 case "max":
-                    this.__Els.setMax(this.upStatus);
+                    this.elements.setMax(this.upStatus);
                     break;
                 case "mini":
-                    this.__Els.setMini();
+                    this.elements.setMini();
                     break;
                 case "close":
                     this.toClose();
@@ -80,7 +81,7 @@ var Win = (function () {
             return this.zIndex;
         },
         set: function (v) {
-            this.__Els.box.style.zIndex = String(v);
+            this.elements.box.style.zIndex = String(v);
             this.zIndex = v;
         },
         enumerable: false,
@@ -93,13 +94,13 @@ var Win = (function () {
             if (!parentWin) {
                 return console.error("没有找到上级窗口！");
             }
-            parentWin.__Els.content.appendChild(this.__Els.box);
+            parentWin.elements.content.appendChild(this.elements.box);
             parentWin.children[this.id] = this;
         }
         else {
-            Win.defaultContentBox.appendChild(this.__Els.box);
+            Win.defaultContentBox.appendChild(this.elements.box);
         }
-        this.__Els.setPosition(this.__config);
+        this.elements.setPosition(this.__config);
         Win.WinIdMap[this.id] = this;
         requestAnimationFrame(function () {
             if (_this.callbacks.mounted) {
@@ -109,7 +110,7 @@ var Win = (function () {
     };
     Win.prototype.addMoveEvent = function () {
         var _this = this;
-        moveWin(this, function () {
+        moveWin(this, this.__status, this.elements, function () {
             requestAnimationFrame(function () {
                 if (_this.callbacks.move) {
                     _this.callbacks.move(_this);
@@ -119,13 +120,13 @@ var Win = (function () {
     };
     Win.prototype.addButtonEvent = function () {
         var _this = this;
-        this.__Els.minimize.addEventListener("click", function () {
+        this.elements.minimize.addEventListener("click", function () {
             _this.setMini();
         });
-        this.__Els.maximize.addEventListener("click", function () {
+        this.elements.maximize.addEventListener("click", function () {
             _this.setMax();
         });
-        this.__Els.close.addEventListener("click", function () {
+        this.elements.close.addEventListener("click", function () {
             _this.close();
         });
     };
@@ -139,9 +140,9 @@ var Win = (function () {
                 }
             }
         }
-        var parentElement = this.__Els.box.parentElement;
+        var parentElement = this.elements.box.parentElement;
         if (parentElement) {
-            parentElement.removeChild(this.__Els.box);
+            parentElement.removeChild(this.elements.box);
         }
         delete Win.WinIdMap[this.id];
         if (this.__config.parentId) {
@@ -154,18 +155,18 @@ var Win = (function () {
         }
         var parentNode, parentMiniEl;
         if (this.__config.parentId && Win.WinIdMap[this.__config.parentId]) {
-            parentNode = Win.WinIdMap[this.__config.parentId].__Els.content;
-            parentMiniEl = Win.WinIdMap[this.__config.parentId].__Els.miniEl;
+            parentNode = Win.WinIdMap[this.__config.parentId].elements.content;
+            parentMiniEl = Win.WinIdMap[this.__config.parentId].elements.miniEl;
         }
         else {
             parentNode = Win.defaultContentBox;
             parentMiniEl = Win.baseMiniEl;
         }
         if (this.__status === "mini") {
-            parentMiniEl.appendChild(this.__Els.box);
+            parentMiniEl.appendChild(this.elements.box);
         }
         else {
-            parentNode.appendChild(this.__Els.box);
+            parentNode.appendChild(this.elements.box);
         }
     };
     Win.prototype.setTop = function () {

@@ -30,9 +30,9 @@ export class Win {
   static defaultContentBox = document.body; // 默认内容装载盒子
   // 对象属性
   public id: string;
-  public __Els: WinEl;
-  public status: Status = "initial";
-  private config: Config = defaultConfig;
+  public config: Config = defaultConfig;
+  private elements: WinEl;
+  private status: Status = "initial";
   private children: { [key: string]: Win } = {};
   private upStatus: Status = "initial"; // 上一次的状态
   private zIndex = Win.zIndex;
@@ -41,14 +41,15 @@ export class Win {
   constructor(config: Config) {
     Win.zIndex += 1;
     this.__config = config || defaultConfig;
-    this.id = this.__config.id || Win.createId()
+    const component = this.__config.component as { [key: string]: any };
+    this.id = this.__config.id ? this.__config.id : component && component.id ? component.id : Win.createId();
     // 判断窗口是否已经存在
     if (Win.WinIdMap[this.id]) {
       const errMsg = "相同ID窗口已存在！无法继续创建";
       console.error(errMsg)
       throw new Error(errMsg)
     }
-    this.__Els = new WinEl(this.__config); // 创建元素
+    this.elements = new WinEl(this.__config); // 创建元素
     this.addMoveEvent(); // 添加移动事件
     this.addButtonEvent(); // 为按钮添加事件
     this.__init__show(); // 将窗口挂载到页面
@@ -73,13 +74,13 @@ export class Win {
     this.setTop();
     switch (v) {
       case "initial":
-        this.__Els.setInitial(this.upStatus)
+        this.elements.setInitial(this.upStatus)
         break;
       case "max":
-        this.__Els.setMax(this.upStatus)
+        this.elements.setMax(this.upStatus)
         break;
       case "mini":
-        this.__Els.setMini();
+        this.elements.setMini();
         break;
       case "close":
         this.toClose();
@@ -93,7 +94,7 @@ export class Win {
   }
 
   private set __zIndex(v) {
-    this.__Els.box.style.zIndex = String(v)
+    this.elements.box.style.zIndex = String(v)
     this.zIndex = v
   }
 
@@ -109,12 +110,12 @@ export class Win {
       if (!parentWin) {
         return console.error("没有找到上级窗口！")
       }
-      parentWin.__Els.content.appendChild(this.__Els.box)
+      parentWin.elements.content.appendChild(this.elements.box)
       parentWin.children[this.id] = this;
     } else {
-      Win.defaultContentBox.appendChild(this.__Els.box)
+      Win.defaultContentBox.appendChild(this.elements.box)
     }
-    this.__Els.setPosition(this.__config)
+    this.elements.setPosition(this.__config)
     Win.WinIdMap[this.id] = this
     // 下一帧，触发生命周期函数
     requestAnimationFrame(() => {
@@ -127,7 +128,7 @@ export class Win {
    * 添加移动事件
    */
   private addMoveEvent() {
-    moveWin(this, () => {
+    moveWin(this, this.__status, this.elements, () => {
       // 下一帧，触发生命周期函数
       requestAnimationFrame(() => {
         if (this.callbacks.move) {
@@ -140,13 +141,13 @@ export class Win {
    * 添加按钮事件
    */
   private addButtonEvent() {
-    this.__Els.minimize.addEventListener("click", () => {
+    this.elements.minimize.addEventListener("click", () => {
       this.setMini()
     })
-    this.__Els.maximize.addEventListener("click", () => {
+    this.elements.maximize.addEventListener("click", () => {
       this.setMax()
     })
-    this.__Els.close.addEventListener("click", () => {
+    this.elements.close.addEventListener("click", () => {
       this.close()
     })
   }
@@ -170,9 +171,9 @@ export class Win {
     }
 
     // 先将元素从页面移除
-    const parentElement = this.__Els.box.parentElement;
+    const parentElement = this.elements.box.parentElement;
     if (parentElement) {
-      parentElement.removeChild(this.__Els.box)
+      parentElement.removeChild(this.elements.box)
     }
     // 释放引用内存
     delete Win.WinIdMap[this.id]
@@ -190,16 +191,16 @@ export class Win {
     // 找到父级
     let parentNode: HTMLElement, parentMiniEl: HTMLElement;
     if (this.__config.parentId && Win.WinIdMap[this.__config.parentId]) {
-      parentNode = Win.WinIdMap[this.__config.parentId].__Els.content;
-      parentMiniEl = Win.WinIdMap[this.__config.parentId].__Els.miniEl;
+      parentNode = Win.WinIdMap[this.__config.parentId].elements.content;
+      parentMiniEl = Win.WinIdMap[this.__config.parentId].elements.miniEl;
     } else {
       parentNode = Win.defaultContentBox;
       parentMiniEl = Win.baseMiniEl;
     }
     if (this.__status === "mini") {
-      parentMiniEl.appendChild(this.__Els.box);
+      parentMiniEl.appendChild(this.elements.box);
     } else {
-      parentNode.appendChild(this.__Els.box);
+      parentNode.appendChild(this.elements.box);
     }
   }
 
