@@ -29,13 +29,13 @@ export class Win {
   static baseMiniEl: HTMLElement;
   static defaultContentBox = document.body; // 默认内容装载盒子
   // 对象属性
-  public id: string;
-  public config: Config = defaultConfig;
-  public status: Status = "initial";
+  public id: string; // 当前窗口ID
+  public config: Config = defaultConfig; // 当前窗口配置项
+  public status: Status = "initial"; // 窗口当前状态
+  public zIndex = Win.zIndex; // 当前窗口层级
   private elements: WinEl;
   private children: { [key: string]: Win } = {};
   private upStatus: Status = "initial"; // 上一次的状态
-  private zIndex = Win.zIndex;
   private callbacks: Callbacks = {};
 
   constructor(config: Config) {

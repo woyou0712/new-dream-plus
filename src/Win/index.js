@@ -18,9 +18,9 @@ var Win = (function () {
     function Win(config) {
         this.config = defaultConfig;
         this.status = "initial";
+        this.zIndex = Win.zIndex;
         this.children = {};
         this.upStatus = "initial";
-        this.zIndex = Win.zIndex;
         this.callbacks = {};
         Win.zIndex += 1;
         this.__config = config || defaultConfig;
