@@ -31,8 +31,8 @@ export class Win {
   // 对象属性
   public id: string;
   public config: Config = defaultConfig;
+  public status: Status = "initial";
   private elements: WinEl;
-  private status: Status = "initial";
   private children: { [key: string]: Win } = {};
   private upStatus: Status = "initial"; // 上一次的状态
   private zIndex = Win.zIndex;

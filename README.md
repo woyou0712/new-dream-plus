@@ -5,14 +5,14 @@
 为VUE3量身定制的一款弹窗类UI组件,不依赖任何第三方组件库,简单轻便
 ```
 # 更新
-## 2022-11-08
+## 2022-11
 - 为`Win`类添加可配置静态属性`defaultContentBox`
 - 为`Message`类添加可配置静态属性`defaultContentBox`
 - 为`defaultContentBox`类添加可配置静态属性`defaultContentBox`
 - `defaultContentBox`：顶级弹窗盒子（默认为`document.body`）
 
-## 2022-11-09
 - 优化`Win`实例属性的可访问性，将`config`更新为可访问属性
+- 优化`Win`实例属性的可访问性，将`status`更新为可访问属性
 
 # HTML使用
 - 参考`demo`下的使用方法
