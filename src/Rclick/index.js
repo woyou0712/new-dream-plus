@@ -109,6 +109,10 @@ var Menu = (function () {
             _this.__top = top;
             _this.__status = "block";
         });
+        this.menu.addEventListener("mousedown", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        });
         this.el.addEventListener("click", function () {
             _this.__status = "none";
         });

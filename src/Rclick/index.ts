@@ -113,6 +113,11 @@ export class Menu {
       this.__top = top;
       this.__status = "block"
     })
+    // 鼠标按下=》停止冒泡
+    this.menu.addEventListener("mousedown", (e) => {
+      e.stopPropagation();//停止冒泡
+      e.preventDefault();//阻止默认事件
+    })
     // 左键点击关闭菜单
     this.el.addEventListener("click", () => {
       this.__status = "none"
