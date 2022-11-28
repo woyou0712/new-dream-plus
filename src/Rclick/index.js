@@ -3,19 +3,28 @@ import createElement from "../utils/createElement";
 var Menu = (function () {
     function Menu(el, options) {
         this.options = defaultMenus;
-        this.status = "none";
         this.width = 220;
         this.height = 6;
         this.left = 0;
         this.top = 0;
-        this.el = el;
-        if (!this.el || !this.el.nodeName) {
-            throw "请指定需要右键弹窗的元素";
+        if (Array.isArray(el)) {
+            var parentElement_1 = null;
+            el.forEach(function (e) {
+                if (parentElement_1 && e.parentElement !== parentElement_1) {
+                    throw "多个元素必须是兄弟关系";
+                }
+                else {
+                    parentElement_1 = e.parentElement;
+                }
+            });
+            this.els = el;
+        }
+        else {
+            this.els = [el];
         }
         this.__options = options;
         this.menu = this.__create__menu();
         this.__set__event();
-        this.el.appendChild(this.menu);
     }
     Object.defineProperty(Menu.prototype, "__options", {
         get: function () {
@@ -53,26 +62,15 @@ var Menu = (function () {
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Menu.prototype, "__status", {
-        get: function () {
-            return this.status;
-        },
-        set: function (v) {
-            this.menu.style.display = v;
-            this.status = v;
-        },
-        enumerable: false,
-        configurable: true
-    });
     Menu.prototype.__create__menu = function () {
+        var _this = this;
         var menuBox = createElement("windows-right-menus");
-        menuBox.style.display = this.__status;
         menuBox.style.width = "".concat(this.width, "px");
         var menus = [];
         this.__options.forEach(function (item) {
             var menu = createElement("window-right-menus-item");
             menu.addEventListener("click", function () {
-                item.method(item.id);
+                item.method(_this.el);
             });
             var icon = createElement("window-right-menus-item-icon");
             if (typeof item.icon === "string") {
@@ -94,32 +92,48 @@ var Menu = (function () {
     };
     Menu.prototype.__set__event = function () {
         var _this = this;
-        this.el.addEventListener("contextmenu", function (e) {
+        this.menu.onmousedown = function (e) {
             e.stopPropagation();
             e.preventDefault();
-            var vw = window.innerWidth, vh = window.innerHeight;
-            var left = e.pageX, top = e.pageY;
-            if (vw - left < _this.width) {
-                left = vw - _this.width;
-            }
-            if (vh - top < _this.height) {
-                top = vh - _this.height;
-            }
-            _this.__left = left;
-            _this.__top = top;
-            _this.__status = "block";
+        };
+        this.els.forEach(function (el) {
+            el.oncontextmenu = function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+                _this.el = el;
+                var vw = window.innerWidth, vh = window.innerHeight;
+                var left = e.pageX, top = e.pageY;
+                if (vw - left < _this.width) {
+                    left = vw - _this.width;
+                }
+                if (vh - top < _this.height) {
+                    top = vh - _this.height;
+                }
+                _this.__left = left;
+                _this.__top = top;
+                if (_this.els.length > 1) {
+                    var parentElement = el.parentElement;
+                    if (parentElement) {
+                        parentElement.appendChild(_this.menu);
+                        parentElement.onclick = function () { _this.closeMenu(); };
+                        parentElement.setAttribute("tabindex", "1");
+                        parentElement.onblur = function () { _this.closeMenu(); };
+                    }
+                }
+                else {
+                    el.appendChild(_this.menu);
+                    el.onclick = function () { _this.closeMenu(); };
+                    el.setAttribute("tabindex", "1");
+                    el.onblur = function () { _this.closeMenu(); };
+                }
+            };
         });
-        this.menu.addEventListener("mousedown", function (e) {
-            e.stopPropagation();
-            e.preventDefault();
-        });
-        this.el.addEventListener("click", function () {
-            _this.__status = "none";
-        });
-        this.el.setAttribute("tabindex", "1");
-        this.el.addEventListener("blur", function () {
-            _this.__status = "none";
-        });
+    };
+    Menu.prototype.closeMenu = function () {
+        var parentElement = this.menu.parentElement;
+        if (parentElement) {
+            parentElement.removeChild(this.menu);
+        }
     };
     return Menu;
 }());
