@@ -27,7 +27,7 @@ export class Win {
   static zIndex = 0;
   static showMiniList = true;
   static baseMiniEl: HTMLElement;
-  static defaultContentBox = document.body; // 默认内容装载盒子
+  static defaultContentBox: HTMLElement; // 默认内容装载盒子
   // 对象属性
   public id: string; // 当前窗口ID
   public config: Config = defaultConfig; // 当前窗口配置项
@@ -113,6 +113,10 @@ export class Win {
       parentWin.elements.content.appendChild(this.elements.box)
       parentWin.children[this.id] = this;
     } else {
+      // 如果没有设置默认顶级盒子，则使用body作为顶级盒子
+      if (!Win.defaultContentBox || !Win.defaultContentBox.nodeName) {
+        Win.defaultContentBox = document.body
+      }
       Win.defaultContentBox.appendChild(this.elements.box)
     }
     this.elements.setPosition(this.__config)

@@ -1,10 +1,10 @@
 {
   "name": "new-dream-plus",
-  "version": "2.3.0",
+  "version": "2.3.10",
   "description": "The pop-up UI component of Vue3",
   "main": "src/main",
   "scripts": {
-    "build": "tsc && webpack --mode production"
+    "build": "tsc && webpack --mode production && sass ./src/scss/index.scss ./dist/index.css"
   },
   "keywords": [
     "Vue3's pop-up UI component library",

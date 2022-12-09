@@ -12,6 +12,7 @@ body {
     position: fixed;
     width: 50%;
     height: 50%;
+    color: #333;
 
     * {
       box-sizing: border-box;
@@ -24,7 +25,6 @@ body {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color: #333;
 
       .new-windows-title {
         display: flex;
