@@ -1,6 +1,6 @@
 {
   "name": "new-dream-plus",
-  "version": "2.3.10",
+  "version": "2.4.01",
   "description": "The pop-up UI component of Vue3",
   "main": "src/main",
   "scripts": {
@@ -12,7 +12,8 @@
     "自定义右键菜单",
     "请提示",
     "消息确认框",
-    "截图"
+    "截图",
+    "Loading"
   ],
   "author": "Kobold",
   "license": "ISC",

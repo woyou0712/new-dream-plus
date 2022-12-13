@@ -19,6 +19,11 @@
 ```
 new Menu(el: HTMLElement | HTMLElement[],options)
 ```
+## 2.4.*
+- 新增`Loading`类
+```
+new Loading(options)
+```
 # HTML使用
 - 参考`demo`下的使用方法
 
@@ -245,7 +250,28 @@ submitName | 否 | 确认按钮文字 | "确定"
   }
 </script>
 ```
+## Loading
+```
+<template>
+  <div class="home">
+    <button @click="loading">加载</button>
+  </div>
+</template>
+<script>
+import {  Loading } from "@/new-dream/src/main";
 
+export default{
+  methods:{
+    loading() {
+      const l = new Loading([options]);
+      setTimeout(() => {
+        l.close();
+      }, 2000);
+    },
+  }
+}
+</script>
+```
 
 # VUE示例代码
 ```
