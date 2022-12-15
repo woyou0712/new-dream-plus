@@ -1,14 +1,65 @@
 import createElement from "../utils/createElement";
 import { loadingIcon } from "../svg/icons";
-import { LoadingConfig } from "./Loading.d";
+import { LoadingConfig, LoadingOption } from "./Loading.d";
 
 export class Loading {
   private box: HTMLElement;
   private content: HTMLElement;
   private iconBox: HTMLElement;
   private textBox: HTMLElement;
-  constructor(config?: LoadingConfig | string) {
-    const conf = { text: "拼命加载中...", type: "default", backgroundColor: "rgba(0,0,0,.8)", color: "#E6A23C" }
+  private defaultIcon: string;
+  private heartbeatIcon: HTMLElement;
+  private skipIcon: HTMLElement;
+  constructor() {
+    this.box = createElement("new-window-loading-box");
+    this.content = createElement();
+    this.iconBox = createElement("new-window-loading-icon-box");
+    this.textBox = createElement("new-window-loading-text-box");
+    this.defaultIcon = loadingIcon;
+    this.heartbeatIcon = createElement("new-window-loading-icon-heartbeat-box");
+    [0, 1, 2, 3, 4, 5].forEach((i) => {
+      const ic = createElement(["new-window-loading-icon-heartbeat", `index-${i}`]);
+      this.heartbeatIcon.appendChild(ic);
+    });
+    this.skipIcon = createElement("new-window-loading-icon-skip");
+    this.content.appendChild(this.iconBox);
+    this.content.appendChild(this.textBox);
+    this.box.appendChild(this.content);
+  }
+
+  private renderLoading(config: LoadingConfig) {
+    this.box.style["backgroundColor"] = config.backgroundColor;
+    this.content.className = `new-window-loading-content ${config.type}`;
+    this.content.style["color"] = config.color;
+    const textItems = config.text.split("");
+    this.textBox.innerHTML = "";
+    textItems.forEach((s, i) => {
+      const str = createElement(["new-window-loading-text-item", `index-${i}`]);
+      str.innerText = s;
+      this.textBox.appendChild(str)
+    })
+
+    // 类型图形变换
+    this.iconBox.innerHTML = "";
+    if (config.type === "default") {
+      this.iconBox.innerHTML = this.defaultIcon;
+    } else if (config.type === "heartbeat") {
+      const nodes = this.heartbeatIcon.childNodes;
+      nodes.forEach(e => {
+        (e as HTMLElement).style["backgroundColor"] = config.color;
+      });
+      this.iconBox.appendChild(this.heartbeatIcon);
+    } else if (config.type === "skip") {
+      this.skipIcon.style["borderColor"] = config.color;
+      this.skipIcon.style["backgroundColor"] = config.color;
+      this.iconBox.appendChild(this.skipIcon);
+    }
+    document.body.appendChild(this.box);
+  }
+
+
+  public start(config?: LoadingOption | string) {
+    const conf: LoadingConfig = { text: "拼命加载中...", type: "default", backgroundColor: "rgba(0,0,0,.8)", color: "#409EFF" };
     if (config) {
       if (typeof config === "string") {
         conf.text = config;
@@ -19,45 +70,7 @@ export class Loading {
         if (config.color) { conf.color = config.color }
       }
     }
-    this.box = createElement("new-window-loading-box");
-    this.box.style["backgroundColor"] = conf.backgroundColor;
-    this.content = createElement(["new-window-loading-content", conf.type]);
-    this.content.style["color"] = conf.color;
-    this.iconBox = createElement("new-window-loading-icon-box");
-    // 类型图形变换
-    if (conf.type === "default") {
-      this.iconBox.innerHTML = loadingIcon
-    } else if (conf.type === "skip") {
-      [null, null, null, null, null, null].forEach((e, i) => {
-        const ic = createElement(["new-window-loading-icon-skip", `index-${i}`]);
-        ic.style["backgroundColor"] = conf.color;
-        this.iconBox.appendChild(ic);
-      })
-    } else if (conf.type === "heartbeat") {
-      const ic = createElement("new-window-loading-icon-heartbeat");
-      ic.style["borderColor"] = conf.color;
-      ic.style["backgroundColor"] = conf.color;
-      this.iconBox.appendChild(ic);
-    }
-
-
-    this.textBox = createElement("new-window-loading-text-box");
-    const textItems = conf.text.split("");
-    textItems.forEach((s, i) => {
-      const str = createElement(["new-window-loading-text-item", `index-${i}`]);
-      str.innerText = s;
-      this.textBox.appendChild(str)
-    })
-    this.renderLoading();
-  }
-
-  private renderLoading() {
-
-
-    this.content.appendChild(this.iconBox);
-    this.content.appendChild(this.textBox);
-    this.box.appendChild(this.content);
-    document.body.appendChild(this.box);
+    this.renderLoading(conf);
   }
 
   public close() {

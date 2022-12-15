@@ -11,16 +11,23 @@
     width: 500px;
     margin: auto;
     text-align: center;
+    height: 90px;
 
-    .new-window-loading-icon-box {
+    &>.new-window-loading-icon-box {
       width: 100%;
       height: calc(100% - 30px);
       display: flex;
       justify-content: center;
       align-items: flex-end;
+
+      &>svg {
+        width: 60px;
+        height: 60px;
+        animation: rotation 2s linear infinite;
+      }
     }
 
-    .new-window-loading-text-box {
+    &>.new-window-loading-text-box {
       width: 100%;
       height: 30px;
       display: flex;
@@ -112,58 +119,52 @@
       }
     }
 
-    &.default {
-      height: 90px;
+    &.heartbeat {
+      height: 60px;
 
-      .new-window-loading-icon-box {
-        svg {
-          width: 60px;
-          height: 60px;
-          animation: rotation 2s linear infinite;
+      &>.new-window-loading-icon-box {
+        &>.new-window-loading-icon-heartbeat-box {
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+
+          &>.new-window-loading-icon-heartbeat {
+            width: 10px;
+            animation: loadingSkip 1s linear infinite;
+
+            &+.new-window-loading-icon-heartbeat {
+              margin-left: 5px;
+            }
+
+            &.index-1 {
+              animation-delay: 0.1s
+            }
+
+            &.index-2 {
+              animation-delay: 0.3s
+            }
+
+            &.index-3 {
+              animation-delay: 0.5s
+            }
+
+            &.index-4 {
+              animation-delay: 0.7s
+            }
+
+            &.index-5 {
+              animation-delay: 0.9s
+            }
+          }
         }
       }
     }
 
     &.skip {
-      height: 60px;
-
-      .new-window-loading-icon-box {
-        .new-window-loading-icon-skip {
-          width: 10px;
-          animation: loadingSkip 1s linear infinite;
-
-          &+.new-window-loading-icon-skip {
-            margin-left: 5px;
-          }
-
-          &.index-1 {
-            animation-delay: 0.1s
-          }
-
-          &.index-2 {
-            animation-delay: 0.3s
-          }
-
-          &.index-3 {
-            animation-delay: 0.5s
-          }
-
-          &.index-4 {
-            animation-delay: 0.7s
-          }
-
-          &.index-5 {
-            animation-delay: 0.9s
-          }
-        }
-      }
-    }
-
-    &.heartbeat {
       height: 360px;
       align-items: flex-start;
 
-      .new-window-loading-icon-heartbeat {
+      .new-window-loading-icon-skip {
         width: 50px;
         height: 50px;
         box-sizing: border-box;

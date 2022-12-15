@@ -259,11 +259,11 @@ submitName | 否 | 确认按钮文字 | "确定"
 </template>
 <script>
 import {  Loading } from "@/new-dream/src/main";
-
+const l = new Loading();
 export default{
   methods:{
     loading() {
-      const l = new Loading([options]);
+      l.start([options])
       setTimeout(() => {
         l.close();
       }, 2000);
@@ -272,7 +272,13 @@ export default{
 }
 </script>
 ```
-
+### options:Object|string（非必须）
+key | 必须 | 描述 | 默认值
+-- | -- | -- | --
+text | 否 | 文字提示 | "拼命加载中..."
+type | 否 | 类型("default" | "skip" | "heartbeat") | "default"
+backgroundColor | 否 | 背景颜色 | "rgba(0,0,0,.8)"
+color | 否 | 文字颜色 | "#409EFF"
 # VUE示例代码
 ```
 <template>
