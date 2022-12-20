@@ -34,87 +34,89 @@
       justify-content: center;
       align-items: center;
 
-      .new-window-loading-text-item {
-        animation: byteDance 1s linear infinite;
+      &.animation {
+        .new-window-loading-text-item {
+          animation: byteDance 1s linear infinite;
 
-        &.index-1 {
-          animation-delay: 0.1s
-        }
+          &.index-1 {
+            animation-delay: 0.1s
+          }
 
-        &.index-2 {
-          animation-delay: 0.2s
-        }
+          &.index-2 {
+            animation-delay: 0.2s
+          }
 
-        &.index-3 {
-          animation-delay: 0.3s
-        }
+          &.index-3 {
+            animation-delay: 0.3s
+          }
 
-        &.index-4 {
-          animation-delay: 0.4s
-        }
+          &.index-4 {
+            animation-delay: 0.4s
+          }
 
-        &.index-5 {
-          animation-delay: 0.5s
-        }
+          &.index-5 {
+            animation-delay: 0.5s
+          }
 
-        &.index-6 {
-          animation-delay: 0.6s
-        }
+          &.index-6 {
+            animation-delay: 0.6s
+          }
 
-        &.index-7 {
-          animation-delay: 0.7s
-        }
+          &.index-7 {
+            animation-delay: 0.7s
+          }
 
-        &.index-8 {
-          animation-delay: 0.8s
-        }
+          &.index-8 {
+            animation-delay: 0.8s
+          }
 
-        &.index-9 {
-          animation-delay: 0.7s
-        }
+          &.index-9 {
+            animation-delay: 0.7s
+          }
 
-        &.index-10 {
-          animation-delay: 0.6s
-        }
+          &.index-10 {
+            animation-delay: 0.6s
+          }
 
-        &.index-11 {
-          animation-delay: 0.5s
-        }
+          &.index-11 {
+            animation-delay: 0.5s
+          }
 
-        &.index-12 {
-          animation-delay: 0.4s
-        }
+          &.index-12 {
+            animation-delay: 0.4s
+          }
 
-        &.index-13 {
-          animation-delay: 0.3s
-        }
+          &.index-13 {
+            animation-delay: 0.3s
+          }
 
-        &.index-14 {
-          animation-delay: 0.2s
-        }
+          &.index-14 {
+            animation-delay: 0.2s
+          }
 
-        &.index-15 {
-          animation-delay: 0.1s
-        }
+          &.index-15 {
+            animation-delay: 0.1s
+          }
 
-        &.index-16 {
-          animation-delay: 0
-        }
+          &.index-16 {
+            animation-delay: 0
+          }
 
-        &.index-17 {
-          animation-delay: 0.1s
-        }
+          &.index-17 {
+            animation-delay: 0.1s
+          }
 
-        &.index-18 {
-          animation-delay: 0.2s
-        }
+          &.index-18 {
+            animation-delay: 0.2s
+          }
 
-        &.index-19 {
-          animation-delay: 0.3s
-        }
+          &.index-19 {
+            animation-delay: 0.3s
+          }
 
-        &.index-20 {
-          animation-delay: 0.4s
+          &.index-20 {
+            animation-delay: 0.4s
+          }
         }
       }
     }

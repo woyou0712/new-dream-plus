@@ -4,6 +4,7 @@ export interface LoadingConfig {
   type: LoadingType;
   backgroundColor: string;
   color: string;
+  textAnimation: boolean;
 }
 
 export interface LoadingOption {
@@ -11,4 +12,5 @@ export interface LoadingOption {
   type?: LoadingType;
   backgroundColor?: string;
   color?: string;
+  textAnimation?: boolean;
 }

@@ -1,6 +1,6 @@
 {
   "name": "new-dream-plus",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "The pop-up UI component of Vue3",
   "main": "src/main",
   "scripts": {

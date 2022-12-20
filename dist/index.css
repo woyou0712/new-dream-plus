@@ -457,67 +457,67 @@ body .new-windows-mini-list-box .new-windows-box.mini .new-windows-content {
   justify-content: center;
   align-items: center;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item {
   animation: byteDance 1s linear infinite;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-1 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-1 {
   animation-delay: 0.1s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-2 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-2 {
   animation-delay: 0.2s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-3 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-3 {
   animation-delay: 0.3s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-4 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-4 {
   animation-delay: 0.4s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-5 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-5 {
   animation-delay: 0.5s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-6 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-6 {
   animation-delay: 0.6s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-7 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-7 {
   animation-delay: 0.7s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-8 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-8 {
   animation-delay: 0.8s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-9 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-9 {
   animation-delay: 0.7s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-10 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-10 {
   animation-delay: 0.6s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-11 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-11 {
   animation-delay: 0.5s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-12 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-12 {
   animation-delay: 0.4s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-13 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-13 {
   animation-delay: 0.3s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-14 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-14 {
   animation-delay: 0.2s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-15 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-15 {
   animation-delay: 0.1s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-16 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-16 {
   animation-delay: 0;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-17 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-17 {
   animation-delay: 0.1s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-18 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-18 {
   animation-delay: 0.2s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-19 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-19 {
   animation-delay: 0.3s;
 }
-.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box .new-window-loading-text-item.index-20 {
+.new-window-loading-box .new-window-loading-content > .new-window-loading-text-box.animation .new-window-loading-text-item.index-20 {
   animation-delay: 0.4s;
 }
 .new-window-loading-box .new-window-loading-content.heartbeat {
